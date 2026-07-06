@@ -46,3 +46,6 @@ _debug_*
 
 # Code review graph
 .code-review-graph/
+
+# Local run wrapper (machine-specific paths, not for distribution)
+run-mcp.sh
