@@ -24,7 +24,7 @@ def configure_browser(
 
 
 @lifespan
-async def browser_lifespan(server: FastMCP) -> AsyncIterator[dict[str, Any]]:  # noqa: ARG001
+async def browser_lifespan(server: FastMCP) -> AsyncIterator[dict[str, Any]]:
     yield {}
     await close_browser()
 

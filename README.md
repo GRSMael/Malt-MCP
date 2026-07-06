@@ -1,4 +1,4 @@
-<!-- mcp-name: io.github.LeoMbm/malt-mcp -->
+<!-- mcp-name: io.github.JLMael/Malt-MCP -->
 # Malt MCP Server
 
 [![PyPI](https://img.shields.io/pypi/v/malt-mcp?color=blue)](https://pypi.org/project/malt-mcp/)
@@ -6,6 +6,13 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-%233fb950?labelColor=32383f)](LICENSE)
 
 MCP server for [Malt.fr](https://www.malt.fr). Lets Claude (or any MCP client) read your freelance profile, stats, and missions — and update your profile.
+
+> [!NOTE]
+> **This is a fork.** It builds on [LeoMbm/malt-mcp](https://github.com/LeoMbm/malt-mcp) (Apache-2.0), originally by Leonidas Jeremy — which provides the browser/session foundation and the DOM-scraping read tools. This fork, maintained by [JLMael](https://github.com/JLMael), adds a reverse-engineered layer over Malt's **internal REST API** (read *and* write), profile-editing tools, and a documented [endpoint map](docs/malt-api.md).
+>
+> **A browser is required — there is no headless/API-only mode.** Malt sits behind Cloudflare and binds the session to the browser, so even the API calls run as `fetch` *inside* an authenticated Chromium page. See [How it works](#-how-it-works).
+>
+> The upstream **PyPI package (`malt-mcp`) and `.mcpb` release are the original project's** and do **not** include this fork's API/write additions yet. To use this fork, install it [from source](#-development).
 
 [![Install MCP Bundle](https://img.shields.io/badge/Claude_Desktop_MCPB-d97757?style=for-the-badge&logo=anthropic&logoColor=white)](#-claude-desktop-mcp-bundle)
 [![uvx](https://img.shields.io/badge/uvx-Quick_Install-de5fe9?style=for-the-badge&logo=uv&logoColor=white)](#-uvx-setup-universal)
@@ -158,7 +165,10 @@ uvx malt-mcp@latest --login
 
 ## 🔒 How it works
 
-Under the hood, this is browser automation via [Patchright](https://github.com/Kaliiiiiiiiii-Vinyzu/patchright) (Playwright fork). No API, no reverse-engineering - it drives a real browser like you would.
+Under the hood, this is browser automation via [Patchright](https://github.com/Kaliiiiiiiiii-Vinyzu/patchright) (Playwright fork) — required because Malt is behind Cloudflare, which rejects plain HTTP clients and headless browsers. Everything runs on one authenticated Chromium session, in two complementary layers:
+
+- **DOM scraping** (from upstream): reads/writes where Malt has no clean API — profile read, stats, missions, and the profile-edition drawers.
+- **Internal REST API** (added by this fork): Malt has no public/GraphQL API, so its internal endpoints were reverse-engineered and are called via `fetch` *inside* the authenticated page (`page.evaluate`). The request inherits the session cookies and passes Cloudflare like any in-app XHR — lighter and more stable than parsing HTML, but still browser-bound. The endpoint map is in [`docs/malt-api.md`](docs/malt-api.md).
 
 - **Credentials stay local.** Cookies live in `~/.malt-mcp/profile/`, nowhere else.
 - **Writes are opt-in.** Every tool is read-only except `update_profile`, which is a dry run unless you explicitly pass `confirm=true`.
@@ -172,8 +182,8 @@ Under the hood, this is browser automation via [Patchright](https://github.com/K
 Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for architecture guidelines.
 
 ```bash
-git clone https://github.com/LeoMbm/malt-mcp.git
-cd malt-mcp
+git clone https://github.com/JLMael/Malt-MCP.git
+cd Malt-MCP
 uv sync --group dev
 pre-commit install
 ```

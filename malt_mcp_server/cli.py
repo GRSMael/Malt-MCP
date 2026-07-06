@@ -55,17 +55,17 @@ def _logout() -> None:
     path = DEFAULT_USER_DATA_DIR
     lock = path / "SingletonLock"
     if lock.exists():
-        print("Browser profile in use. Stop the MCP server first.")  # noqa: T201
+        print("Browser profile in use. Stop the MCP server first.")
         return
     if path.exists():
         try:
             shutil.rmtree(path)
         except PermissionError as e:
-            print(f"Could not remove profile: {e}", file=sys.stderr)  # noqa: T201
+            print(f"Could not remove profile: {e}", file=sys.stderr)
             return
-        print(f"Removed browser profile: {path}")  # noqa: T201
+        print(f"Removed browser profile: {path}")
     else:
-        print("No browser profile found")  # noqa: T201
+        print("No browser profile found")
 
 
 def main() -> None:

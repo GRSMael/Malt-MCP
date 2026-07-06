@@ -24,4 +24,4 @@
 ## Install
 
 Download the `.mcpb` below and double-click to install in Claude Desktop.
-Or use uvx: see [README](https://github.com/LeoMbm/malt-mcp#readme).
+Or install from source: see [README](https://github.com/JLMael/Malt-MCP#readme).

@@ -1,20 +1,10 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.LeoMbm/malt-mcp",
-  "description": "MCP server for Malt.fr. Read your freelance profile, stats, and missions from Claude — and update your profile.",
+  "name": "io.github.JLMael/Malt-MCP",
+  "description": "MCP server for Malt.fr. Read your freelance profile, stats, and missions from Claude — and update your profile. Fork of LeoMbm/malt-mcp with a reverse-engineered internal REST API layer.",
   "repository": {
-    "url": "https://github.com/LeoMbm/malt-mcp",
+    "url": "https://github.com/JLMael/Malt-MCP",
     "source": "github"
   },
-  "version": "0.4.2",
-  "packages": [
-    {
-      "registryType": "pypi",
-      "identifier": "malt-mcp",
-      "version": "0.4.2",
-      "transport": {
-        "type": "stdio"
-      }
-    }
-  ]
+  "version": "0.4.2"
 }

@@ -6,13 +6,19 @@
   "description": "Connect Claude to your Malt.fr freelance account -profile, stats, and missions",
   "long_description": "# Malt MCP Server\n\nConnect Claude to your Malt.fr freelance account. View your profile, track stats, browse missions, and get mission details -all through Claude Desktop.\n\n## First-time setup\n\n1. Install the `.mcpb` bundle in Claude Desktop.\n2. On the first tool call, a browser window opens so you can log into Malt.\n3. Your session is saved locally in `~/.malt-mcp/profile/` and persists across restarts.\n\n**Note:** Only email/password login is supported. Google OAuth is blocked by Google when automated.",
   "author": {
-    "name": "Leonidas Jeremy",
-    "email": "leonidas@tryhard.be",
-    "url": "https://github.com/LeoMbm"
+    "name": "JLMael",
+    "url": "https://github.com/JLMael"
   },
-  "homepage": "https://github.com/LeoMbm/malt-mcp",
-  "documentation": "https://github.com/LeoMbm/malt-mcp#readme",
-  "support": "https://github.com/LeoMbm/malt-mcp/issues",
+  "contributors": [
+    {
+      "name": "Leonidas Jeremy",
+      "url": "https://github.com/LeoMbm",
+      "role": "Original author of the upstream project (LeoMbm/malt-mcp, Apache-2.0)"
+    }
+  ],
+  "homepage": "https://github.com/JLMael/Malt-MCP",
+  "documentation": "https://github.com/JLMael/Malt-MCP#readme",
+  "support": "https://github.com/JLMael/Malt-MCP/issues",
   "license": "Apache-2.0",
   "keywords": [
     "malt",

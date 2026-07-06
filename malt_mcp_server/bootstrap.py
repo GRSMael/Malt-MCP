@@ -20,7 +20,7 @@ def ensure_browser() -> None:
     if _INSTALL_MARKER.exists():
         return
 
-    print("  Installing Patchright Chromium browser (first run, ~200 MB)...")  # noqa: T201
+    print("  Installing Patchright Chromium browser (first run, ~200 MB)...")
 
     try:
         subprocess.run(
@@ -28,7 +28,7 @@ def ensure_browser() -> None:
             check=True,
         )
     except subprocess.CalledProcessError as e:
-        print(f"  Failed to install Chromium: {e}")  # noqa: T201
+        print(f"  Failed to install Chromium: {e}")
         msg = (
             "Could not install Chromium via Patchright. "
             "Run manually: uv run patchright install chromium"
@@ -37,4 +37,4 @@ def ensure_browser() -> None:
 
     BROWSER_DIR.mkdir(parents=True, exist_ok=True)
     _INSTALL_MARKER.touch()
-    print("  Chromium installed.")  # noqa: T201
+    print("  Chromium installed.")
