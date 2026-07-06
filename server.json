@@ -1,0 +1,20 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.LeoMbm/malt-mcp",
+  "description": "MCP server for Malt.fr. Read your freelance profile, stats, and missions from Claude — and update your profile.",
+  "repository": {
+    "url": "https://github.com/LeoMbm/malt-mcp",
+    "source": "github"
+  },
+  "version": "0.4.2",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "malt-mcp",
+      "version": "0.4.2",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

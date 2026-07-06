@@ -1,0 +1,511 @@
+{
+ "endpoints": [
+  "GET https://www.malt.fr/dashboard/freelancer/api/user/me",
+  "GET https://www.malt.fr/dashboard/freelancer/api/feature-flipping/fetch/keyword-search-global-matching-for-localized-clients,keyword-search-global-matching-for-defined-localized-countries,organization-service-level-enabled",
+  "GET https://www.malt.fr/dashboard/freelancer/api/datalayer",
+  "GET https://www.malt.fr/dashboard/freelancer/api/user/current-session",
+  "GET https://www.malt.fr/dashboard/freelancer/api/feature-flipping/fetch/malt-start-links",
+  "GET https://www.malt.fr/dashboard/freelancer/api/feature-flipping/host/freelance-invitation",
+  "GET https://www.malt.fr/dashboard/freelancer/api/summary",
+  "GET https://www.malt.fr/dashboard/freelancer/api/news",
+  "GET https://www.malt.fr/dashboard/freelancer/api/webpref/freelance-dashboard-splash-screen-latest-step",
+  "GET https://www.malt.fr/dashboard/freelancer/api/scoring",
+  "GET https://www.malt.fr/dashboard/freelancer/api/scoring/levels",
+  "GET https://www.malt.fr/dashboard/freelancer/api/sales-revenue",
+  "GET https://www.malt.fr/dashboard/freelancer/api/company",
+  "GET https://www.malt.fr/dashboard/freelancer/api/download-app-mobile/banner-links",
+  "GET https://www.malt.fr/dashboard/freelancer/api/webpref/navbar-onboarding-acknowledged",
+  "GET https://www.malt.fr/dashboard/freelancer/api/download-app-mobile/show",
+  "GET https://www.malt.fr/dashboard/freelancer/api/feature-flipping/fetch/platform-shutdown-alert,purchase-order-monitoring-in-project-client",
+  "GET https://www.malt.fr/navbar/api/context",
+  "GET https://www.malt.fr/navbar/api/user",
+  "GET https://www.malt.fr/navbar/api/supported-host/l10n/hosts",
+  "GET https://www.malt.fr/dashboard/freelancer/api/profile/visibility",
+  "GET https://www.malt.fr/dashboard/freelancer/api/stats",
+  "POST https://www.malt.fr/dashboard/freelancer/api/scoring/dashboardConsultation",
+  "GET https://www.malt.fr/dashboard/freelancer/api/sharing",
+  "GET https://www.malt.fr/navbar/api/profile-availability",
+  "GET https://www.malt.fr/navbar/api/profile-preferences",
+  "POST https://www.malt.fr/api/t/event",
+  "GET https://www.malt.fr/dashboard/freelancer/api/nps/feedbacks/user/active",
+  "GET https://www.malt.fr/dashboard/freelancer/api/feature-flipping/host/freelancer-cgu-modal-on-update",
+  "GET https://www.malt.fr/dashboard/freelancer/api/feature-flipping/host/freelancer-gdpr-modal-on-update",
+  "GET https://www.malt.fr/dashboard/freelancer/api/webpref/cgu-version-acceptance-acknowledgement",
+  "GET https://www.malt.fr/dashboard/freelancer/api/content/versions/last",
+  "GET https://www.malt.fr/profile/api/visibility/<profileId>",
+  "GET https://www.malt.fr/profile/api/freelancer-charter/<profileId>",
+  "GET https://www.malt.fr/profile/api/nps/feedbacks/user/active",
+  "GET https://www.malt.fr/profile/api/user/current-session",
+  "GET https://www.malt.fr/profile/api/feature-flipping/host/freelancer-cgu-modal-on-update",
+  "GET https://www.malt.fr/profile/api/feature-flipping/host/freelancer-gdpr-modal-on-update",
+  "GET https://www.malt.fr/profile/api/webpref/cgu-version-acceptance-acknowledgement",
+  "GET https://www.malt.fr/profile/api/content/versions/last",
+  "GET https://www.malt.fr/dashboard/freelancer/api/webpref/freelancer-statistics-display-period",
+  "GET https://www.malt.fr/dashboard/freelancer/api/visibility",
+  "GET https://www.malt.fr/dashboard/freelancer/api/mission/summary",
+  "GET https://www.malt.fr/dashboard/freelancer/api/stats/keywords",
+  "GET https://www.malt.fr/dashboard/freelancer/api/visibility/history",
+  "GET https://www.malt.fr/messenger/api/user/me",
+  "GET https://www.malt.fr/messenger/api/feature-flipping/fetch/keyword-search-global-matching-for-localized-clients,keyword-search-global-matching-for-defined-localized-countries",
+  "GET https://www.malt.fr/messenger/api/datalayer",
+  "GET https://www.malt.fr/messenger/api/feature-flipping/fetch/sse,freelancer-application-read-only-view,decline-freelancer-application-message,messenger-external-link-warning-dialog",
+  "GET https://www.malt.fr/messenger/api/conversation/current-user",
+  "GET https://www.malt.fr/messenger/api/conversation/event-source-url",
+  "GET https://www.malt.fr/messenger/api/user/current-session",
+  "GET https://www.malt.fr/messenger/api/conversation/conversations-or-client-project-offers",
+  "GET https://www.malt.fr/messenger/api/feature-flipping/fetch/platform-shutdown-alert,purchase-order-monitoring-in-project-client",
+  "GET https://www.malt.fr/messenger/api/nps/feedbacks/user/active",
+  "GET https://www.malt.fr/messenger/api/feature-flipping/host/freelancer-gdpr-modal-on-update",
+  "GET https://www.malt.fr/messenger/api/feature-flipping/host/freelancer-cgu-modal-on-update",
+  "GET https://www.malt.fr/messenger/api/webpref/cgu-version-acceptance-acknowledgement",
+  "GET https://www.malt.fr/messenger/api/content/versions/last"
+ ],
+ "schema": {
+  "https://www.malt.fr/dashboard/freelancer/api/company": {
+   "s": 200,
+   "k": [
+    "companyId",
+    "name",
+    "type",
+    "registrationNumber"
+   ]
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/content/versions/last": {
+   "s": 400,
+   "k": null
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/datalayer": {
+   "s": 200,
+   "k": [
+    "name",
+    "profileId",
+    "identityIds",
+    "identityId",
+    "identityType",
+    "admin",
+    "loggedUser",
+    "visitorCategories",
+    "flag",
+    "clientMaturity",
+    "freelanceMaturity",
+    "freelanceCategory",
+    "freelanceExperienceLevel",
+    "compliant",
+    "scoring"
+   ]
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/download-app-mobile/banner-links": {
+   "s": 400,
+   "k": null
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/download-app-mobile/show": {
+   "s": 200,
+   "k": []
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/feature-flipping/fetch/keyword-search-global-matching-for-localized-clients,keyword-search-global-matching-for-defined-localized-countries,organization-service-level-enabled": {
+   "s": 200,
+   "k": [
+    "keyword-search-global-matching-for-localized-clients",
+    "keyword-search-global-matching-for-defined-localized-countries",
+    "organization-service-level-enabled"
+   ]
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/feature-flipping/fetch/malt-start-links": {
+   "s": 200,
+   "k": [
+    "malt-start-links"
+   ]
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/feature-flipping/fetch/platform-shutdown-alert,purchase-order-monitoring-in-project-client": {
+   "s": 200,
+   "k": [
+    "platform-shutdown-alert",
+    "purchase-order-monitoring-in-project-client"
+   ]
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/feature-flipping/host/freelance-invitation": {
+   "s": 200,
+   "k": []
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/feature-flipping/host/freelancer-cgu-modal-on-update": {
+   "s": 200,
+   "k": []
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/feature-flipping/host/freelancer-gdpr-modal-on-update": {
+   "s": 200,
+   "k": []
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/mission/summary": {
+   "s": 200,
+   "k": [
+    "caTTC",
+    "caHT",
+    "nbMissions",
+    "nbReviews",
+    "rating",
+    "currency"
+   ]
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/news": {
+   "s": 200,
+   "k": [
+    "title",
+    "description",
+    "linkLabel",
+    "link",
+    "illustrationUrl",
+    "cookieId"
+   ]
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/nps/feedbacks/user/active": {
+   "s": 200,
+   "k": []
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/profile/visibility": {
+   "s": 200,
+   "k": [
+    "profileId",
+    "alerts",
+    "status",
+    "profileCompleted",
+    "availabilityLabel",
+    "availabilityType",
+    "availabilityFrequency",
+    "nextAvailabilityDate",
+    "lastVerifiedAvailabilityInDays"
+   ]
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/sales-revenue": {
+   "s": 200,
+   "k": [
+    "allTimeTotal",
+    "lastYearTotal",
+    "currentMissionsTotalHT",
+    "numberOfMissionsEndedLastYear",
+    "allTimeNumberOfMissionsEnded",
+    "last12MonthsHistory",
+    "currency"
+   ]
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/scoring": {
+   "s": 200,
+   "k": [
+    "profile",
+    "points",
+    "pointsSinceLastVisit",
+    "bonusPoints",
+    "recoPoints",
+    "profileCompleted",
+    "profileCompletedPoints",
+    "hasDoneAtLeastOneMission",
+    "atLeastOneRatingOrThreeCompletedMissionLots",
+    "top",
+    "hasResponsibleLitigation",
+    "stepInfo",
+    "rating"
+   ]
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/scoring/levels": {
+   "s": 200,
+   "k": [
+    "<array 3>"
+   ]
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/sharing": {
+   "s": 200,
+   "k": [
+    "profileUrl",
+    "title"
+   ]
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/stats": {
+   "s": 200,
+   "k": [
+    "nbProfileViews",
+    "nbSearchHits",
+    "nbWishlist",
+    "searchResultsAveragePosition",
+    "searchResultsTerm"
+   ]
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/stats/keywords": {
+   "err": "SyntaxError: Unexpected token 'i', \"invalid di\"..."
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/summary": {
+   "s": 200,
+   "k": [
+    "profileId",
+    "accountId",
+    "completionPercentage",
+    "firstName",
+    "lastName",
+    "jobTitle",
+    "availabilityInfos",
+    "photoId",
+    "photo",
+    "searchVisibilityChoice",
+    "profileIsStrategyVertical",
+    "emailVerified"
+   ]
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/user/current-session": {
+   "s": 200,
+   "k": [
+    "visitorId",
+    "locale",
+    "currency",
+    "loggedInUser",
+    "pathWhereToRedirectUser"
+   ]
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/user/me": {
+   "s": 200,
+   "k": [
+    "id",
+    "username",
+    "email",
+    "roles",
+    "identities",
+    "platformAdmin",
+    "impersonated",
+    "connectedThroughSso",
+    "organizationMemberDetails",
+    "selectedIdentity",
+    "photo",
+    "impersonatedBy",
+    "extraInformation"
+   ]
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/visibility": {
+   "s": 200,
+   "k": [
+    "nbFavorites",
+    "nbAppearancesWeekly",
+    "nbAppearancesVariationRateWeekly",
+    "nbAppearancesMonthly",
+    "nbAppearancesVariationRateMonthly",
+    "nbViewsWeekly",
+    "nbViewsVariationRateWeekly",
+    "nbViewsMonthly",
+    "nbViewsVariationRateMonthly"
+   ]
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/visibility/history": {
+   "s": 200,
+   "k": [
+    "searchHitsPerDate",
+    "profileViewsPerDate"
+   ]
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/webpref/cgu-version-acceptance-acknowledgement": {
+   "err": "SyntaxError: Unexpected non-whitespace character a"
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/webpref/freelance-dashboard-splash-screen-latest-step": {
+   "s": 200,
+   "k": null
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/webpref/freelancer-statistics-display-period": {
+   "err": "SyntaxError: Unexpected token 'm', \"month\" is not "
+  },
+  "https://www.malt.fr/dashboard/freelancer/api/webpref/navbar-onboarding-acknowledged": {
+   "s": 200,
+   "k": []
+  },
+  "https://www.malt.fr/messenger/api/content/versions/last": {
+   "s": 400,
+   "k": null
+  },
+  "https://www.malt.fr/messenger/api/conversation/conversations-or-client-project-offers": {
+   "s": 400,
+   "k": null
+  },
+  "https://www.malt.fr/messenger/api/conversation/current-user": {
+   "s": 200,
+   "k": [
+    "identityType",
+    "firstName",
+    "lastName",
+    "hasActiveClientProjectOffers",
+    "hasFreelancerIdentity",
+    "hasClientIdentity",
+    "webPreferences",
+    "phoneNumber",
+    "photo",
+    "accountId"
+   ]
+  },
+  "https://www.malt.fr/messenger/api/conversation/event-source-url": {
+   "err": "SyntaxError: Unexpected token 'h', \"https://re\"..."
+  },
+  "https://www.malt.fr/messenger/api/datalayer": {
+   "s": 200,
+   "k": [
+    "name",
+    "profileId",
+    "identityIds",
+    "identityId",
+    "identityType",
+    "admin",
+    "loggedUser",
+    "visitorCategories",
+    "flag",
+    "clientMaturity",
+    "freelanceMaturity",
+    "freelanceCategory",
+    "freelanceExperienceLevel",
+    "compliant",
+    "scoring"
+   ]
+  },
+  "https://www.malt.fr/messenger/api/feature-flipping/fetch/keyword-search-global-matching-for-localized-clients,keyword-search-global-matching-for-defined-localized-countries": {
+   "s": 200,
+   "k": [
+    "keyword-search-global-matching-for-localized-clients",
+    "keyword-search-global-matching-for-defined-localized-countries"
+   ]
+  },
+  "https://www.malt.fr/messenger/api/feature-flipping/fetch/platform-shutdown-alert,purchase-order-monitoring-in-project-client": {
+   "s": 200,
+   "k": [
+    "platform-shutdown-alert",
+    "purchase-order-monitoring-in-project-client"
+   ]
+  },
+  "https://www.malt.fr/messenger/api/feature-flipping/fetch/sse,freelancer-application-read-only-view,decline-freelancer-application-message,messenger-external-link-warning-dialog": {
+   "s": 200,
+   "k": [
+    "sse",
+    "freelancer-application-read-only-view",
+    "decline-freelancer-application-message",
+    "messenger-external-link-warning-dialog"
+   ]
+  },
+  "https://www.malt.fr/messenger/api/feature-flipping/host/freelancer-cgu-modal-on-update": {
+   "s": 200,
+   "k": []
+  },
+  "https://www.malt.fr/messenger/api/feature-flipping/host/freelancer-gdpr-modal-on-update": {
+   "s": 200,
+   "k": []
+  },
+  "https://www.malt.fr/messenger/api/nps/feedbacks/user/active": {
+   "s": 200,
+   "k": []
+  },
+  "https://www.malt.fr/messenger/api/user/current-session": {
+   "s": 200,
+   "k": [
+    "visitorId",
+    "locale",
+    "currency",
+    "loggedInUser"
+   ]
+  },
+  "https://www.malt.fr/messenger/api/user/me": {
+   "s": 200,
+   "k": [
+    "id",
+    "username",
+    "email",
+    "roles",
+    "identities",
+    "platformAdmin",
+    "impersonated",
+    "connectedThroughSso",
+    "selectedIdentity",
+    "photo",
+    "extraInformation"
+   ]
+  },
+  "https://www.malt.fr/messenger/api/webpref/cgu-version-acceptance-acknowledgement": {
+   "err": "SyntaxError: Unexpected non-whitespace character a"
+  },
+  "https://www.malt.fr/navbar/api/context": {
+   "s": 200,
+   "k": [
+    "isEnforcedIdentity",
+    "state"
+   ]
+  },
+  "https://www.malt.fr/navbar/api/profile-availability": {
+   "s": 200,
+   "k": [
+    "value",
+    "partial",
+    "frequency",
+    "nextAvailabilityDate"
+   ]
+  },
+  "https://www.malt.fr/navbar/api/profile-preferences": {
+   "s": 200,
+   "k": [
+    "searchVisibilityChoice"
+   ]
+  },
+  "https://www.malt.fr/navbar/api/supported-host/l10n/hosts": {
+   "s": 200,
+   "k": [
+    "<array 8>"
+   ]
+  },
+  "https://www.malt.fr/navbar/api/user": {
+   "s": 200,
+   "k": [
+    "selectedIdentityId",
+    "identities",
+    "options",
+    "featureFlags",
+    "currentCountry",
+    "currentLanguage",
+    "insightsBaseUrl",
+    "punchoutSessionActive"
+   ]
+  },
+  "https://www.malt.fr/profile/api/content/versions/last": {
+   "s": 400,
+   "k": null
+  },
+  "https://www.malt.fr/profile/api/feature-flipping/host/freelancer-cgu-modal-on-update": {
+   "s": 200,
+   "k": []
+  },
+  "https://www.malt.fr/profile/api/feature-flipping/host/freelancer-gdpr-modal-on-update": {
+   "s": 200,
+   "k": []
+  },
+  "https://www.malt.fr/profile/api/freelancer-charter/<profileId>": {
+   "s": 200,
+   "k": [
+    "signed",
+    "valid",
+    "invalidated",
+    "invalidUntil"
+   ]
+  },
+  "https://www.malt.fr/profile/api/nps/feedbacks/user/active": {
+   "s": 200,
+   "k": []
+  },
+  "https://www.malt.fr/profile/api/user/current-session": {
+   "s": 200,
+   "k": [
+    "visitorId",
+    "locale",
+    "currency",
+    "loggedInUser",
+    "pathWhereToRedirectUser"
+   ]
+  },
+  "https://www.malt.fr/profile/api/visibility/<profileId>": {
+   "s": 200,
+   "k": [
+    "alerts",
+    "status",
+    "profileCompleted"
+   ]
+  },
+  "https://www.malt.fr/profile/api/webpref/cgu-version-acceptance-acknowledgement": {
+   "err": "SyntaxError: Unexpected non-whitespace character a"
+  }
+ }
+}
