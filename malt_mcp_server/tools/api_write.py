@@ -18,9 +18,6 @@ from malt_mcp_server.core.api import api_get, api_write
 from malt_mcp_server.core.auth import require_auth
 from malt_mcp_server.core.exceptions import MaltAuthError, MaltNetworkError
 
-# Known availability frequencies. FULL_TIME is confirmed live; the others are
-# expected values to be validated by a live capture.
-# TODO: complete this set from a live capture of the availability widget.
 _AVAILABILITY_FREQUENCIES = ("FULL_TIME", "PART_TIME")
 
 

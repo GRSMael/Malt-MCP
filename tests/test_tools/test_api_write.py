@@ -97,7 +97,6 @@ class TestConfirmedFlow:
             {"value": "AVAILABLE", "frequency": "FULL_TIME"},
         )
         assert calls[1] == ("get", API_AVAILABILITY)
-        # "AVAILABLE_AND_VERIFIED" satisfies an "AVAILABLE" request.
         assert result.data["dry_run"] is False
         assert result.data["verified"] is True
 
@@ -119,7 +118,6 @@ class TestConfirmedFlow:
             result = await client.call_tool(
                 "set_availability", {"available": False, "confirm": True}
             )
-        # Requested NOT_AVAILABLE but read back AVAILABLE -> not verified.
         assert result.data["verified"] is False
 
     async def test_auth_error_becomes_tool_error(self, mcp, monkeypatch):

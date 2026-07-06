@@ -25,7 +25,7 @@ def stub_api(monkeypatch):
     calls: list[str] = []
 
     async def fake_auth():
-        return object()  # opaque page; api_get is stubbed so it's never used
+        return object()
 
     async def fake_api_get(_page, path):
         calls.append(path)
@@ -137,7 +137,6 @@ class TestProjectOffers:
         async with Client(mcp) as client:
             result = await client.call_tool("get_project_offers", {})
         assert result.data == envelope
-        # content items are untouched
         assert result.data["content"] == [{"opaque": "item"}]
 
     async def test_default_query_params(self, mcp, stub_offers):

@@ -30,7 +30,6 @@ from malt_mcp_server.core.exceptions import MaltNetworkError
 
 logger = logging.getLogger(__name__)
 
-# Global singleton
 _browser: "BrowserManager | None" = None
 _headless: bool = False
 _timeout: int = DEFAULT_TIMEOUT_MS

@@ -11,8 +11,6 @@ from malt_mcp_server.core.exceptions import MaltScrapingError
 
 logger = logging.getLogger(__name__)
 
-# CSS selectors for profile fields (verified on live Malt HTML 2026-04-29).
-# Malt uses data-testid attributes extensively. Adjust when HTML changes.
 _SEL_NAME = "[data-testid='profile-fullname']"
 _SEL_HEADLINE = "[data-testid='profile-headline']"
 _SEL_RATE = "[data-testid='profile-price']"

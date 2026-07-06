@@ -34,20 +34,16 @@ from malt_mcp_server.scraping.profile import scrape_profile, wait_for_profile_re
 
 logger = logging.getLogger(__name__)
 
-# Validation limits for editable fields (to confirm against Malt's live
-# character counters, but safe as guardrails).
 HEADLINE_MAX_LENGTH = 110
 BIO_MAX_LENGTH = 5000
 DAILY_RATE_MIN = 1
 DAILY_RATE_MAX = 100_000
 
-# --- Header drawer: shared by headline + daily_rate ------------------------
 _SEL_HEADER_EDIT_CTA = "[data-testid='profile-header-edit-cta']"
 _SEL_HEADLINE_INPUT = "[data-testid='profile-edition-section-headline-input']"
 _SEL_PRICE_INPUT = "[data-testid='profile-edit-price-input']"
 _SEL_SECTION_CONFIRM = "[data-testid='profile-edition-section-confirm-button']"
 
-# --- Bio drawer: WYSIWYG contenteditable -----------------------------------
 _SEL_ABOUT_EDIT_CTA = "[data-testid='profile-about-edit-cta']"
 _SEL_WYSIWYG = "[data-testid='wysiwyg-editor']"
 
@@ -206,8 +202,6 @@ async def apply_profile_changes(
     if _has_skill_changes(changes):
         if on_progress:
             await on_progress("Updating skills...")
-        # Skills go through Malt's internal REST API (read-merge-write),
-        # not the DOM drawer.
         await apply_skills_via_api(page, changes, on_progress)
 
 
@@ -258,8 +252,6 @@ async def _apply_header_drawer(page: Page, changes: dict[str, Any]) -> None:
                 first_field = field
 
         await page.locator(_SEL_SECTION_CONFIRM).first.click()
-        # Drawer closing is the save signal — if a field stays visible, Malt
-        # rejected the value (server-side validation) or the save failed.
         if first_field is not None:
             await first_field.wait_for(state="hidden")
     except PlaywrightError as e:
@@ -273,8 +265,6 @@ async def _apply_bio(page: Page, value: str) -> None:
     """Update the bio through the WYSIWYG contenteditable drawer."""
     try:
         editor = await _open_drawer(page, _SEL_ABOUT_EDIT_CTA, _SEL_WYSIWYG)
-        # contenteditable div: select-all then type, rather than fill(),
-        # which is unreliable on non-input elements.
         await editor.click()
         await editor.press("ControlOrMeta+A")
         await editor.press("Delete")

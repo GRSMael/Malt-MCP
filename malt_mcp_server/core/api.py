@@ -23,9 +23,6 @@ from malt_mcp_server.core.exceptions import MaltNetworkError
 
 logger = logging.getLogger(__name__)
 
-# Runs in the page context. Returns a structured envelope so the Python side
-# can distinguish HTTP status, JSON payloads and raw-text bodies without any
-# ambiguity (some endpoints return a bare value like "month" or true).
 _FETCH_JS = """
 async (url) => {
     let response;
@@ -56,10 +53,6 @@ async (url) => {
 }
 """
 
-# Runs in the page context for mutating requests. Reads the anti-CSRF token
-# from the XSRF-TOKEN cookie (URL-decoded) and sends it as X-XSRF-TOKEN. Same
-# structured envelope as the read fetch, plus a `noToken` signal when the
-# cookie is absent (so the Python side raises a clear error without writing).
 _WRITE_JS = """
 async (args) => {
     const { url, method, payload } = args;

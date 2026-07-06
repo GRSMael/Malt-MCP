@@ -37,11 +37,10 @@ from malt_mcp_server.core.exceptions import MaltScrapingError
 
 logger = logging.getLogger(__name__)
 
-# Default type/origin for a manually added skill, as sent by Malt's own UI.
 _DEFAULT_SKILL_TYPE = "GLOBAL"
 _DEFAULT_SKILL_ORIGIN = "MANUAL"
 
-ProgressCallback = Any  # Callable[[str], Awaitable[object]] | None; kept loose.
+ProgressCallback = Any
 
 
 def _entry_label(entry: dict[str, Any]) -> str:
@@ -194,7 +193,6 @@ async def apply_skills_via_api(
         additions = list(changes.get("skills", []))
         remove_cf = {s.casefold() for s in changes.get("remove_skills", [])}
 
-    # Removals: drop matching entries, preserving order/type/origin of the rest.
     kept: list[dict[str, Any]] = []
     removed_labels: list[str] = []
     for entry in selected:
@@ -213,7 +211,6 @@ async def apply_skills_via_api(
     if removed_labels and on_progress is not None:
         await on_progress(f"Removing skills: {', '.join(removed_labels)}")
 
-    # Additions: resolve free text to canonical labels, skipping already-kept.
     present_cf = {_entry_label(e).casefold() for e in kept}
     if additions and on_progress is not None:
         await on_progress(f"Adding skills: {', '.join(additions)}")
@@ -242,9 +239,6 @@ async def verify_skills_via_api(
         MaltScrapingError / MaltNetworkError: from ``read_skills``.
     """
     selected, _top = await read_skills(page)
-    # Verify against the written list only: apply_skills_via_api mutates
-    # selectedSkillsOrder and never topSkills (a disjoint highlighted list),
-    # so including topSkills would flag them as unexpected on a replace.
     present = {_entry_label(e).casefold() for e in selected}
     results: dict[str, dict[str, Any]] = {}
 
@@ -257,9 +251,7 @@ async def verify_skills_via_api(
         }
 
     if "remove_skills" in changes:
-        still_there = [
-            s for s in changes["remove_skills"] if s.casefold() in present
-        ]
+        still_there = [s for s in changes["remove_skills"] if s.casefold() in present]
         results["remove_skills"] = {
             "expected_absent": changes["remove_skills"],
             "still_present": still_there,

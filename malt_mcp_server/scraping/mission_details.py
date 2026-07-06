@@ -17,8 +17,6 @@ from malt_mcp_server.scraping.missions import (
 
 logger = logging.getLogger(__name__)
 
-# Detail-panel selectors (right side of messages view).
-# Verified on live Malt HTML (2026-04-29).
 _SEL_PROJECT_TITLE = ".client-project-offer-message__title"
 _SEL_PROJECT_DESC = ".cropped-text__text"
 _SEL_PREFERENCES = ".client-project-offer-preferences__list dl"
@@ -117,7 +115,6 @@ async def _parse_skills(page: Page) -> dict[str, list[str]]:
     for i in range(count):
         h3 = subtitles.nth(i)
         label = (await h3.inner_text()).strip()
-        # Tags are in .joy-tag inside the same parent div as the h3.
         parent = h3.locator("xpath=..")
         tags = parent.locator(".joy-tag")
         tag_count = await safe_count(tags)

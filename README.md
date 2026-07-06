@@ -5,12 +5,12 @@
 [![Python](https://img.shields.io/badge/python-3.12+-3776ab?logo=python&logoColor=white)](https://python.org)
 [![License](https://img.shields.io/badge/License-Apache%202.0-%233fb950?labelColor=32383f)](LICENSE)
 
-MCP server for [Malt.fr](https://www.malt.fr). Lets Claude (or any MCP client) read your freelance profile, stats, and missions — and update your profile.
+MCP server for [Malt.fr](https://www.malt.fr). Lets Claude (or any MCP client) read your freelance profile, stats, and missions, and update your profile.
 
 > [!NOTE]
-> **This is a fork.** It builds on [LeoMbm/malt-mcp](https://github.com/LeoMbm/malt-mcp) (Apache-2.0), originally by Leonidas Jeremy — which provides the browser/session foundation and the DOM-scraping read tools. This fork, maintained by [JLMael](https://github.com/JLMael), adds a reverse-engineered layer over Malt's **internal REST API** (read *and* write), profile-editing tools, and a documented [endpoint map](docs/malt-api.md).
+> **This is a fork.** It builds on [LeoMbm/malt-mcp](https://github.com/LeoMbm/malt-mcp) (Apache-2.0), originally by Leonidas Jeremy, which provides the browser/session foundation and the DOM-scraping read tools. This fork, maintained by [JLMael](https://github.com/JLMael), adds a reverse-engineered layer over Malt's **internal REST API** (read *and* write), profile-editing tools, and a documented [endpoint map](docs/malt-api.md).
 >
-> **A browser is required — there is no headless/API-only mode.** Malt sits behind Cloudflare and binds the session to the browser, so even the API calls run as `fetch` *inside* an authenticated Chromium page. See [How it works](#-how-it-works).
+> **A browser is required, there is no headless/API-only mode.** Malt sits behind Cloudflare and binds the session to the browser, so even the API calls run as `fetch` *inside* an authenticated Chromium page. See [How it works](#-how-it-works).
 >
 > The upstream **PyPI package (`malt-mcp`) and `.mcpb` release are the original project's** and do **not** include this fork's API/write additions yet. To use this fork, install it [from source](#-development).
 
@@ -31,35 +31,35 @@ MCP server for [Malt.fr](https://www.malt.fr). Lets Claude (or any MCP client) r
 | `get_statistics` | View profile stats (views, response rate, missions) | working |
 | `get_missions` | List mission conversations from messaging | working |
 | `get_mission_details` | Get full details of a specific mission (budget, skills, messages) | working |
-| `update_profile` | **Write:** update headline, bio, daily rate, and add/remove/replace skills. Dry run by default — pass `confirm=true` to apply. | working |
+| `update_profile` | **Write:** update headline, bio, daily rate, and add/remove/replace skills. Dry run by default, pass `confirm=true` to apply. | working |
 | `get_dashboard_stats` | Visibility stats + weekly/monthly counters + history (API) | working |
 | `get_scoring` | Super Malter scoring breakdown + level thresholds (API) | working |
 | `get_revenue` | Revenue figures + mission summary (API) | working |
 | `get_availability` | Availability status + search-visibility preferences (API) | working |
 | `get_account` | Account identity + profile summary + company (API) | working |
 | `get_project_offers` | List client project offers / conversations, paginated (API) | working |
-| `set_availability` | **Write:** set availability (AVAILABLE / NOT_AVAILABLE) via API. Dry run by default — pass `confirm=true` to apply. | working |
+| `set_availability` | **Write:** set availability (AVAILABLE / NOT_AVAILABLE) via API. Dry run by default, pass `confirm=true` to apply. | working |
 | `close_session` | Close the browser and free resources | working |
 
 ### ✍️ Writing to your profile (`update_profile`)
 
 `update_profile` is the only tool that modifies your Malt account. It is guarded:
 
-- **Dry run by default.** Without `confirm=true`, nothing is written — the tool only returns the validated changes it *would* apply.
+- **Dry run by default.** Without `confirm=true`, nothing is written, the tool only returns the validated changes it *would* apply.
 - **Partial updates.** Only the fields you pass (`headline`, `bio`, `daily_rate`, and the skills fields) are touched.
 - **Verified writes.** After saving, the profile page is re-read and each field is compared against the requested value. The result reports `verified: true/false` per field.
 
-**Skills — full CRUD:**
+**Skills, full CRUD:**
 
 - `skills`: skills to **add** (additive; existing skills are kept).
 - `remove_skills`: skills to **delete** (case-insensitive match).
-- `replace_skills: true`: treat `skills` as the **exact** desired list — the tool adds the missing ones and removes everything else. In this mode, omit `remove_skills`.
+- `replace_skills: true`: treat `skills` as the **exact** desired list, the tool adds the missing ones and removes everything else. In this mode, omit `remove_skills`.
 
 > [!NOTE]
 > Skill deletion clicks the cross icon on each drawer chip (`data-testid$='-icon-remove'`), expanding the collapsed list first. Verified end-to-end on a live session. If Malt changes its edition UI, the skills path in `malt_mcp_server/scraping/update_profile.py` is the first thing to re-check.
 
 > [!WARNING]
-> Automated profile edits may violate Malt's TOS. This tool changes what clients see on your public profile — review the dry-run output before confirming, and use at your own risk.
+> Automated profile edits may violate Malt's TOS. This tool changes what clients see on your public profile, review the dry-run output before confirming, and use at your own risk.
 
 ### 📊 API-based read tools
 
@@ -165,10 +165,10 @@ uvx malt-mcp@latest --login
 
 ## 🔒 How it works
 
-Under the hood, this is browser automation via [Patchright](https://github.com/Kaliiiiiiiiii-Vinyzu/patchright) (Playwright fork) — required because Malt is behind Cloudflare, which rejects plain HTTP clients and headless browsers. Everything runs on one authenticated Chromium session, in two complementary layers:
+Under the hood, this is browser automation via [Patchright](https://github.com/Kaliiiiiiiiii-Vinyzu/patchright) (Playwright fork), required because Malt is behind Cloudflare, which rejects plain HTTP clients and headless browsers. Everything runs on one authenticated Chromium session, in two complementary layers:
 
-- **DOM scraping** (from upstream): reads/writes where Malt has no clean API — profile read, stats, missions, and the profile-edition drawers.
-- **Internal REST API** (added by this fork): Malt has no public/GraphQL API, so its internal endpoints were reverse-engineered and are called via `fetch` *inside* the authenticated page (`page.evaluate`). The request inherits the session cookies and passes Cloudflare like any in-app XHR — lighter and more stable than parsing HTML, but still browser-bound. The endpoint map is in [`docs/malt-api.md`](docs/malt-api.md).
+- **DOM scraping** (from upstream): reads/writes where Malt has no clean API, profile read, stats, missions, and the profile-edition drawers.
+- **Internal REST API** (added by this fork): Malt has no public/GraphQL API, so its internal endpoints were reverse-engineered and are called via `fetch` *inside* the authenticated page (`page.evaluate`). The request inherits the session cookies and passes Cloudflare like any in-app XHR, lighter and more stable than parsing HTML, but still browser-bound. The endpoint map is in [`docs/malt-api.md`](docs/malt-api.md).
 
 - **Credentials stay local.** Cookies live in `~/.malt-mcp/profile/`, nowhere else.
 - **Writes are opt-in.** Every tool is read-only except `update_profile`, which is a dry run unless you explicitly pass `confirm=true`.

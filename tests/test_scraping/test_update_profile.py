@@ -155,8 +155,6 @@ class TestDiffChanges:
         assert set(results) == {"headline"}
 
     def test_skills_not_handled_by_diff_changes(self):
-        # Skills are verified through the API, not diff_changes (which now only
-        # covers the DOM-edited fields). It must ignore skill keys entirely.
         results = diff_changes(
             {"skills": ["Python"], "remove_skills": ["Java"]},
             {"skills": ["python"]},
@@ -187,7 +185,6 @@ class _FakeLocator:
         return 1
 
     async def inner_text(self):
-        # Autocomplete options render "<skill>\n<usage>"; echo what was typed.
         return self._page.last_typed or ""
 
     async def click(self):
@@ -237,10 +234,8 @@ class TestApplyProfileChanges:
 
         clicks = [entry for entry in page.log if entry[0] == "click"]
         selectors = [c[1] for c in clicks]
-        # Header edit CTA opened exactly once, confirmed exactly once.
         assert selectors.count(up._SEL_HEADER_EDIT_CTA) == 1
         assert selectors.count(up._SEL_SECTION_CONFIRM) == 1
-        # Both fields filled inside the single drawer.
         fills = {entry[1]: entry[2] for entry in page.log if entry[0] == "fill"}
         assert fills[up._SEL_HEADLINE_INPUT] == "Dev"
         assert fills[up._SEL_PRICE_INPUT] == "600"
@@ -252,19 +247,16 @@ class TestApplyProfileChanges:
         fills = [entry for entry in page.log if entry[0] == "fill"]
         assert len(fills) == 1
         assert fills[0][1] == up._SEL_HEADLINE_INPUT
-        # Price input is never touched.
         assert all(entry[1] != up._SEL_PRICE_INPUT for entry in page.log)
 
     async def test_bio_uses_wysiwyg_type_not_fill(self, no_render):
         page = _FakePage()
         await apply_profile_changes(cast(Page, page), {"bio": "New bio"})
 
-        # contenteditable: typed, never filled.
         typed = [entry for entry in page.log if entry[0] == "type"]
         assert typed == [("type", up._SEL_WYSIWYG, "New bio")]
         filled = [entry[1] for entry in page.log if entry[0] == "fill"]
         assert up._SEL_WYSIWYG not in filled
-        # Select-all + delete before typing.
         presses = [entry[2] for entry in page.log if entry[0] == "press"]
         assert "ControlOrMeta+A" in presses
 
@@ -274,4 +266,3 @@ class TestApplyProfileChanges:
 
         clicks = [c[1] for c in page.log if c[0] == "click"]
         assert up._SEL_HEADER_EDIT_CTA not in clicks
-

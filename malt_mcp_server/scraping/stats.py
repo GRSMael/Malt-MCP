@@ -11,8 +11,6 @@ from malt_mcp_server.core.exceptions import MaltScrapingError
 
 logger = logging.getLogger(__name__)
 
-# Selectors verified on live Malt analytics HTML (2026-04-29).
-# URL: /dashboard/freelancer/analytics
 _SEL_POINTS = ".scoring-summary__number"
 _SEL_STAT_VALUE = ".joy-font-primary-800"
 _SEL_VARIATION = ".variation-rate"

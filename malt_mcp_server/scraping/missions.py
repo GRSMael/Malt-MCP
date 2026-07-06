@@ -11,9 +11,6 @@ from malt_mcp_server.scraping._helpers import el_text, safe_count
 
 logger = logging.getLogger(__name__)
 
-# Selectors verified on live Malt messages HTML (2026-04-29).
-# Two types of items: conversations (.conversation-summary__wrapper)
-# and project offers (.client-project-offer-summary__wrapper).
 _SEL_CONVERSATION = ".conversation-summary__wrapper"
 _SEL_PROJECT_OFFER = ".client-project-offer-summary__wrapper"
 _SEL_CONV_NAME = ".conversation-summary-header__title"
@@ -55,7 +52,6 @@ async def scrape_missions(page: Page) -> list[dict[str, Any]]:
 
     await wait_for_conversation_list(page)
 
-    # Parse all items in DOM order to preserve Malt's chronological sort.
     all_items_sel = f"{_SEL_CONVERSATION}, {_SEL_PROJECT_OFFER}"
     all_items = page.locator(all_items_sel)
     count = await safe_count(all_items)

@@ -1,7 +1,7 @@
 [project]
 name = "malt-mcp"
 version = "0.4.2"
-description = "MCP server for Malt.fr — manage your freelance profile, stats, missions, and availability through AI assistants."
+description = "MCP server for Malt.fr, manage your freelance profile, stats, missions, and availability through AI assistants."
 readme = "README.md"
 requires-python = ">=3.12,<3.15"
 authors = [

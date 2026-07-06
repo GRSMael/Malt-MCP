@@ -28,7 +28,6 @@ class _FakePage:
 
     @property
     def evaluated_url(self) -> Any:
-        # Reads pass the URL as the second arg; writes pass an args dict.
         if isinstance(self.evaluated_arg, dict):
             return self.evaluated_arg.get("url")
         return self.evaluated_arg
@@ -85,7 +84,6 @@ class TestApiGet:
             await api_get(cast(Page, page), "/api/thing")
 
     async def test_json_body_can_be_bare_value(self):
-        # Endpoints returning a bare JSON literal (e.g. true) still parse.
         page = _FakePage(
             {"ok": True, "status": 200, "isJson": True, "json": True, "text": "true"}
         )

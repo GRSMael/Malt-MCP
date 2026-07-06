@@ -127,12 +127,10 @@ class TestApplyAdd:
         assert len(stub.puts) == 1
         method, path, payload = stub.puts[0]
         assert (method, path) == ("PUT", API_SKILLS)
-        # Write key is selectedSkillsOrder, entries reduced to {id,type,origin}.
         assert payload["selectedSkillsOrder"] == [
             {"id": "Python", "type": "GLOBAL", "origin": "MANUAL"},
             {"id": "Rust", "type": "GLOBAL", "origin": "MANUAL"},
         ]
-        # topSkills present and reduced too.
         assert payload["topSkills"] == [
             {"id": "Java", "type": "GLOBAL", "origin": "MANUAL"}
         ]
@@ -194,7 +192,6 @@ class TestApplyReplace:
         )
         await apply_skills_via_api(PAGE, {"skills_replace": ["Python", "Rust"]})
         order = stub.puts[0][2]["selectedSkillsOrder"]
-        # Python kept (order preserved), Java/COBOL dropped, Rust added.
         assert [e["id"] for e in order] == ["Python", "Rust"]
 
     async def test_replace_no_change_skips_put(self, api):
@@ -203,7 +200,6 @@ class TestApplyReplace:
         assert stub.puts == []
 
     async def test_replace_case_insensitive_keep(self, api):
-        # Target uses different casing than the live label: kept, no add.
         stub = api(selected=[_entry("Python")], suggest={"python": ["Python"]})
         await apply_skills_via_api(PAGE, {"skills_replace": ["python"]})
         assert stub.puts == []
@@ -231,13 +227,11 @@ class TestProgressCallbacks:
 
 class TestVerify:
     async def test_add_present(self, api):
-        # Adds land in selectedSkills; topSkills is a disjoint list ignored here.
         api(selected=[_entry("python"), _entry("Rust")], top=[_entry("SEO")])
         results = await verify_skills_via_api(PAGE, {"skills": ["Python", "Rust"]})
         assert results["skills"]["verified"] is True
 
     async def test_topskill_not_counted_on_replace(self, api):
-        # A highlighted topSkill must not be flagged as unexpected on replace.
         api(selected=[_entry("Python")], top=[_entry("SEO")])
         results = await verify_skills_via_api(PAGE, {"skills_replace": ["Python"]})
         assert results["skills_replace"]["verified"] is True
