@@ -5,10 +5,10 @@ description = "MCP server for Malt.fr, manage your freelance profile, stats, mis
 readme = "README.md"
 requires-python = ">=3.12,<3.15"
 authors = [
-    { name = "JLMael" }
+    { name = "GRSMael" }
 ]
 maintainers = [
-    { name = "JLMael" }
+    { name = "GRSMael" }
 ]
 license = {file = "LICENSE"}
 keywords = [
@@ -41,11 +41,11 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/JLMael/Malt-MCP"
-Documentation = "https://github.com/JLMael/Malt-MCP#readme"
-Repository = "https://github.com/JLMael/Malt-MCP"
-Issues = "https://github.com/JLMael/Malt-MCP/issues"
-Changelog = "https://github.com/JLMael/Malt-MCP/releases"
+Homepage = "https://github.com/GRSMael/Malt-MCP"
+Documentation = "https://github.com/GRSMael/Malt-MCP#readme"
+Repository = "https://github.com/GRSMael/Malt-MCP"
+Issues = "https://github.com/GRSMael/Malt-MCP/issues"
+Changelog = "https://github.com/GRSMael/Malt-MCP/releases"
 "Upstream (original project)" = "https://github.com/LeoMbm/malt-mcp"
 
 [project.scripts]

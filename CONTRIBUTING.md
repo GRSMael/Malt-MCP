@@ -2,7 +2,7 @@
 
 Thanks for your interest in contributing to Malt MCP Server!
 
-Please [open an issue](https://github.com/JLMael/Malt-MCP/issues) first to discuss any feature or bug fix before submitting a PR.
+Please [open an issue](https://github.com/GRSMael/Malt-MCP/issues) first to discuss any feature or bug fix before submitting a PR.
 
 ## Architecture
 
@@ -70,7 +70,7 @@ def register_example_tools(mcp: FastMCP) -> None:
 ## Development setup
 
 ```bash
-git clone https://github.com/JLMael/Malt-MCP.git
+git clone https://github.com/GRSMael/Malt-MCP.git
 cd malt-mcp
 uv sync --group dev
 pre-commit install
